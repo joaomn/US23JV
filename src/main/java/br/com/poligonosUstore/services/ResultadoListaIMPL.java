@@ -3,14 +3,14 @@ package br.com.poligonosUstore.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.poligonosUstore.services.exceptions.FraseNaoFoiSalva;
+import br.com.poligonosUstore.exceptions.FraseNaoFoiSalvaException;
 
-public class ResultadoListaIMPL implements ResultadoListaService {
+public class ResultadoListaImpl implements IResultadoListaService {
 	
 	//criar frase com stringbuilder
 
 	@Override
-	public String FraseResultado(double tamanhoLado, double resultadoFinal, String poligono) throws FraseNaoFoiSalva {
+	public String FraseResultado(double tamanhoLado, double resultadoFinal, String poligono) throws FraseNaoFoiSalvaException {
 
 		try {
 			
@@ -32,7 +32,7 @@ public class ResultadoListaIMPL implements ResultadoListaService {
 			
 			
 		} catch (Exception e) {
-			throw new FraseNaoFoiSalva();
+			throw new FraseNaoFoiSalvaException();
 		}
 		
 		
@@ -42,7 +42,7 @@ public class ResultadoListaIMPL implements ResultadoListaService {
 	
 // obter lista
 	@Override
-	public List<String> GetListaResultados(List<String> listaFinal)  throws FraseNaoFoiSalva {
+	public List<String> GetListaResultados(List<String> listaFinal)  throws FraseNaoFoiSalvaException {
 		try {
 			 
 			List<String> lista = listaFinal;
@@ -52,7 +52,7 @@ public class ResultadoListaIMPL implements ResultadoListaService {
 			
 			
 		} catch (Exception e) {
-			throw  new FraseNaoFoiSalva("erro para obter lista");
+			throw  new FraseNaoFoiSalvaException("erro para obter lista");
 		}
 		
 	}

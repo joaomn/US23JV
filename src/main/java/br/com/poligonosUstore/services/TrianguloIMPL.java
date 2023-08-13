@@ -1,8 +1,8 @@
 package br.com.poligonosUstore.services;
 
-import br.com.poligonosUstore.services.exceptions.ValorNegativoNaoSuportadoException;
+import br.com.poligonosUstore.exceptions.ValorNegativoNaoSuportadoException;
 
-public class TrianguloIMPL implements PoligonosService {
+public class TrianguloImpl implements IPoligonosService {
 
 	@Override
 	public double CalcularArea(double lado) throws ValorNegativoNaoSuportadoException {
@@ -11,9 +11,9 @@ public class TrianguloIMPL implements PoligonosService {
 
 			double potencia = Math.pow(lado, 2);
 
-			// assumindo que raiz de 3 é 1.73
+			
 
-			double resultado = (potencia * 1.73) / 4;
+			double resultado = (potencia * Math.sqrt(3)) / 4;
 
 			return resultado;
 

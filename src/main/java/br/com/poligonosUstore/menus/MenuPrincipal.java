@@ -5,32 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import br.com.poligonosUstore.services.ResultadoListaIMPL;
-import br.com.poligonosUstore.services.exceptions.FraseNaoFoiSalva;
-
-
+import br.com.poligonosUstore.exceptions.FraseNaoFoiSalvaException;
+import br.com.poligonosUstore.services.ResultadoListaImpl;
 
 public class MenuPrincipal {
 	Scanner scan = new Scanner(System.in);
 
-	String fraseResultado = "";
-
-	double tamanhoLado, resultadoTriangulo, resultadoQuadrado;
-
-	int  opcao = 100;
-
-	List<String> listaResultados = new ArrayList<>();
-	
 	MenuPoligono poligonoMenu = new MenuPoligono();
-	
-	ResultadoListaIMPL lista = new ResultadoListaIMPL();
 
-	
-	DecimalFormat formato = new DecimalFormat("0.00");
-	
-	
+	ResultadoListaImpl lista = new ResultadoListaImpl();
+
+
+
 	public void Menu() {
 		
+		int opcao;
+
 		do {
 			System.out.println("+++++++++++++++++++++++++++++++++++++");
 			System.out.println("+                                   +");
@@ -42,7 +32,7 @@ public class MenuPrincipal {
 			System.out.println("+++++++++++++++++++++++++++++++++++++");
 			System.out.print("Escolha uma opção: ");
 
-			opcao = scan.nextInt();
+			 opcao = scan.nextInt();
 			scan.nextLine();
 
 			switch (opcao) {
@@ -50,38 +40,41 @@ public class MenuPrincipal {
 
 				poligonoMenu.MenuPoligonos();
 
-				
 				break;
 			case 0:
 				System.out.println(" ");
 				System.out.println("Finalizando a calculadora...\n");
-				
+
 				break;
 			default:
 				System.out.println("Opção inválida. Escolha novamente.");
 			}
 
 		} while (opcao != 0);
-		
+
 		try {
-			listaResultados = lista.GetListaResultados(poligonoMenu.listaResultados);
-		} catch (FraseNaoFoiSalva e) {
+			var listaResultados = lista.GetListaResultados(poligonoMenu.listaResultados);
+
+			for (String frase : listaResultados) {
+				System.out.println(frase);
+				System.out.println("");
+			}
+
+			var resultadoFinalFormat = String.format("%.2f",poligonoMenu.resultadoFinal);
+
+			var Stringbuilder = new StringBuilder();
+
+			Stringbuilder.append("Área total ").append(resultadoFinalFormat).append(" cm2");
+
+			var fraseTotal = Stringbuilder.toString();
+
+			System.out.println(fraseTotal);
+
+		} catch (FraseNaoFoiSalvaException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
-		
-		for (String frase : listaResultados) {
-			System.out.println(frase);
-			System.out.println("");
-		}
-		
-		String resultadoFinalFormat = formato.format(poligonoMenu.resultadoFinal);
 
-		System.out.println("Área total " + resultadoFinalFormat + " cm2");
-		
-		
-		
 	}
-
 
 }

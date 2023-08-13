@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import br.com.poligonosUstore.enums.LadosENUM;
-import br.com.poligonosUstore.services.QuadradoIMPL;
-import br.com.poligonosUstore.services.ResultadoListaIMPL;
-import br.com.poligonosUstore.services.TrianguloIMPL;
-import br.com.poligonosUstore.services.exceptions.FraseNaoFoiSalva;
-import br.com.poligonosUstore.services.exceptions.ValorNegativoNaoSuportadoException;
+import br.com.poligonosUstore.exceptions.FraseNaoFoiSalvaException;
+import br.com.poligonosUstore.exceptions.ValorNegativoNaoSuportadoException;
+import br.com.poligonosUstore.services.QuadradoImpl;
+import br.com.poligonosUstore.services.ResultadoListaImpl;
+import br.com.poligonosUstore.services.TrianguloImpl;
 
 
 
@@ -22,19 +22,19 @@ public class MenuPoligono {
 
 	double tamanhoLado, resultadoTriangulo, resultadoQuadrado, resultadoFinal = 0.0;
 
-	int numeroLados, opcao = 100;
+
 
 	List<String> listaResultados = new ArrayList<>();
 	
-	QuadradoIMPL quadrado = new QuadradoIMPL();
+	QuadradoImpl quadrado = new QuadradoImpl();
 	
-	TrianguloIMPL triangulo = new TrianguloIMPL();
+	TrianguloImpl triangulo = new TrianguloImpl();
 	
-	ResultadoListaIMPL lista = new ResultadoListaIMPL();
+	ResultadoListaImpl lista = new ResultadoListaImpl();
 
 
 
-	DecimalFormat formato = new DecimalFormat("0.00");
+	
 	
 	
 	public void MenuPoligonos() {
@@ -42,7 +42,7 @@ public class MenuPoligono {
 		System.out.println("Digite o numero de lados : Tres ou Quatro");
 		String numLados = scan.next().toUpperCase();
 		
-//		LadosENUM opcao = LadosENUM.valueOf(numLados.toUpperCase());
+
 		
 		LadosENUM opcao;
 	    try {
@@ -58,7 +58,7 @@ public class MenuPoligono {
 		switch(opcao){
 		
 		case TRES:
-			numeroLados = 3;
+		
 			
 			System.out.println("Digite o tamanho do lado (em cm): ");
 			tamanhoLado = scan.nextDouble();
@@ -83,8 +83,8 @@ public class MenuPoligono {
 				 listaResultados.add(fraseResultado);
 				 
 				
-			} catch (FraseNaoFoiSalva e) {
-				// TODO Auto-generated catch block
+			} catch (FraseNaoFoiSalvaException e) {
+				
 				
 				System.out.println(e.getMessage());
 			}
@@ -93,7 +93,7 @@ public class MenuPoligono {
 			
 		case QUATRO:
 			
-			numeroLados = 4;
+			
 			System.out.println("Digite o tamanho do lado (em cm): ");
 			tamanhoLado = scan.nextDouble();
 			scan.nextLine();
@@ -111,11 +111,11 @@ public class MenuPoligono {
 			}
 			
 			try {
-				fraseResultado = lista.FraseResultado(numeroLados, resultadoQuadrado, "Quadrado");
+				fraseResultado = lista.FraseResultado(tamanhoLado, resultadoQuadrado, "Quadrado");
 				
 				listaResultados.add(fraseResultado);
 				
-			} catch (FraseNaoFoiSalva e) {
+			} catch (FraseNaoFoiSalvaException e) {
 				// TODO Auto-generated catch block
 				System.out.println(e.getMessage());
 			}

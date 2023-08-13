@@ -1,6 +1,6 @@
-package br.com.poligonosUstore.services.exceptions;
+package br.com.poligonosUstore.exceptions;
 
-public class ValorNegativoNaoSuportadoException extends Exception {
+public class ValorNegativoNaoSuportadoException extends RuntimeException {
 
 	
 	private static final long serialVersionUID = 1L;

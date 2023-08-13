@@ -1,8 +1,8 @@
 package br.com.poligonosUstore.services;
 
-import br.com.poligonosUstore.services.exceptions.ValorNegativoNaoSuportadoException;
+import br.com.poligonosUstore.exceptions.ValorNegativoNaoSuportadoException;
 
-public class QuadradoIMPL implements PoligonosService {
+public class QuadradoImpl implements IPoligonosService {
 
 	@Override
 	public double CalcularArea(double lado) throws ValorNegativoNaoSuportadoException {
