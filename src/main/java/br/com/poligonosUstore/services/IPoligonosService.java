@@ -4,6 +4,8 @@ import br.com.poligonosUstore.exceptions.ValorNegativoNaoSuportadoException;
 
 public interface IPoligonosService {
 	
-	double CalcularArea(double lado) throws ValorNegativoNaoSuportadoException;
+	public double calcularArea(double lado) throws ValorNegativoNaoSuportadoException;
+	
+//	public double getArea();
 
 }

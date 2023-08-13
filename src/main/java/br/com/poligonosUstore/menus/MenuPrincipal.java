@@ -17,7 +17,7 @@ public class MenuPrincipal {
 
 
 
-	public void Menu() {
+	public void menuInicial() {
 		
 		int opcao;
 
@@ -38,7 +38,7 @@ public class MenuPrincipal {
 			switch (opcao) {
 			case 1:
 
-				poligonoMenu.MenuPoligonos();
+				poligonoMenu.menuPoligonos();
 
 				break;
 			case 0:
@@ -53,7 +53,7 @@ public class MenuPrincipal {
 		} while (opcao != 0);
 
 		try {
-			var listaResultados = lista.GetListaResultados(poligonoMenu.listaResultados);
+			var listaResultados = lista.getListaResultados(poligonoMenu.getListaResultados());
 
 			for (String frase : listaResultados) {
 				System.out.println(frase);

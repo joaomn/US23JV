@@ -5,21 +5,21 @@ import br.com.poligonosUstore.exceptions.ValorNegativoNaoSuportadoException;
 public class TrianguloImpl implements IPoligonosService {
 
 	@Override
-	public double CalcularArea(double lado) throws ValorNegativoNaoSuportadoException {
+	public double calcularArea(double lado) throws ValorNegativoNaoSuportadoException {
 
-		if (lado >= 0.0) {
-
-			double potencia = Math.pow(lado, 2);
+		if (lado < 0.0) {
+			
+			throw new ValorNegativoNaoSuportadoException();
 
 			
+
+		} else {
+			double potencia = Math.pow(lado, 2);
 
 			double resultado = (potencia * Math.sqrt(3)) / 4;
 
 			return resultado;
-
-		} else {
-
-			throw new ValorNegativoNaoSuportadoException();
+			
 		}
 
 	}

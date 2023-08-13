@@ -10,7 +10,7 @@ public class ResultadoListaImpl implements IResultadoListaService {
 	//criar frase com stringbuilder
 
 	@Override
-	public String FraseResultado(double tamanhoLado, double resultadoFinal, String poligono) throws FraseNaoFoiSalvaException {
+	public String fraseResultado(double tamanhoLado, double resultadoFinal, String poligono) throws FraseNaoFoiSalvaException {
 
 		try {
 			
@@ -42,7 +42,7 @@ public class ResultadoListaImpl implements IResultadoListaService {
 	
 // obter lista
 	@Override
-	public List<String> GetListaResultados(List<String> listaFinal)  throws FraseNaoFoiSalvaException {
+	public List<String> getListaResultados(List<String> listaFinal)  throws FraseNaoFoiSalvaException {
 		try {
 			 
 			List<String> lista = listaFinal;

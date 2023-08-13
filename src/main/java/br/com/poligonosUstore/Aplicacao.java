@@ -8,7 +8,7 @@ public class Aplicacao {
 		
 		MenuPrincipal menu = new MenuPrincipal();
 		
-		menu.Menu();
+		menu.menuInicial();
 
 
 
