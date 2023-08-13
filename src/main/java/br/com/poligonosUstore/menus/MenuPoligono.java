@@ -18,7 +18,7 @@ public class MenuPoligono {
 
 	private Scanner scan = new Scanner(System.in);
 
-	private String fraseResultado;
+	
 
 	double resultadoFinal = 0.0;
 
@@ -63,7 +63,7 @@ public class MenuPoligono {
 
 				resultadoFinal = triangulo.CalculoTotal(resultadoTriangulo, resultadoFinal);
 
-				fraseResultado = lista.fraseResultado(tamanhoLado, resultadoTriangulo, "Triangulo");
+				var fraseResultado = lista.fraseResultado(tamanhoLado, resultadoTriangulo, "Triangulo");
 
 				listaResultados.add(fraseResultado);
 
@@ -87,7 +87,7 @@ public class MenuPoligono {
 
 				resultadoFinal = quadrado.calculoTotal(resultadoQuadrado, resultadoFinal);
 
-				fraseResultado = lista.fraseResultado(tamanhoLado, resultadoQuadrado, "Quadrado");
+				var fraseResultado = lista.fraseResultado(tamanhoLado, resultadoQuadrado, "Quadrado");
 
 				listaResultados.add(fraseResultado);
 
