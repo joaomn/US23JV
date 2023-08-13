@@ -11,9 +11,9 @@ import br.com.poligonosUstore.services.ResultadoListaImpl;
 public class MenuPrincipal {
 	Scanner scan = new Scanner(System.in);
 
-	MenuPoligono poligonoMenu = new MenuPoligono();
+	 private MenuPoligono poligonoMenu = new MenuPoligono();
 
-	ResultadoListaImpl lista = new ResultadoListaImpl();
+	private ResultadoListaImpl lista = new ResultadoListaImpl();
 
 
 
