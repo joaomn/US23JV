@@ -4,28 +4,25 @@ import br.com.poligonosUstore.exceptions.ValorNegativoNaoSuportadoException;
 
 public class QuadradoImpl implements IPoligonosService {
 
+	private double lado;
+
+	public QuadradoImpl(double lado) {
+		this.lado = lado;
+	}
+
 	@Override
-	public double calcularArea(double lado) throws ValorNegativoNaoSuportadoException {
+	public double getArea() {
 
-		if (lado >= 0.0) {
+		if (lado < 0.0) {
 
-			return Math.pow(lado, 2);
+			throw new ValorNegativoNaoSuportadoException();
 
 		} else {
 
-			throw new ValorNegativoNaoSuportadoException();
+			return Math.pow(lado, 2);
 
 		}
 
 	}
 
-
-
-	public double calculoTotal(double resultado, double resultadoFinal) {
-
-		double resultadoTotal = resultadoFinal + resultado;	
-
-		return resultadoTotal;
- 
-	}
 }

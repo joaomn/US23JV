@@ -3,15 +3,19 @@ package br.com.poligonosUstore.services;
 import br.com.poligonosUstore.exceptions.ValorNegativoNaoSuportadoException;
 
 public class TrianguloImpl implements IPoligonosService {
+	
+	private double lado;
+	
+	public TrianguloImpl(double lado) {
+		this.lado = lado;
+	}
 
 	@Override
-	public double calcularArea(double lado) throws ValorNegativoNaoSuportadoException {
+	public double getArea()  {
 
 		if (lado < 0.0) {
-			
-			throw new ValorNegativoNaoSuportadoException();
 
-			
+			throw new ValorNegativoNaoSuportadoException();
 
 		} else {
 			double potencia = Math.pow(lado, 2);
@@ -19,20 +23,13 @@ public class TrianguloImpl implements IPoligonosService {
 			double resultado = (potencia * Math.sqrt(3)) / 4;
 
 			return resultado;
-			
+
 		}
 
 	}
 
 
-	
-	
-	public double CalculoTotal(double resultado, double resultadoFinal) {
 
-		double resultadoTotal = resultadoFinal + resultado;	
 
-		return resultadoTotal;
- 
-	}
 
 }

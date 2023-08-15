@@ -11,14 +11,12 @@ import br.com.poligonosUstore.services.ResultadoListaImpl;
 public class MenuPrincipal {
 	Scanner scan = new Scanner(System.in);
 
-	 private MenuPoligono poligonoMenu = new MenuPoligono();
+	private MenuPoligono poligonoMenu = new MenuPoligono();
 
 	private ResultadoListaImpl lista = new ResultadoListaImpl();
 
-
-
 	public void menuInicial() {
-		
+
 		int opcao;
 
 		do {
@@ -32,23 +30,23 @@ public class MenuPrincipal {
 			System.out.println("+++++++++++++++++++++++++++++++++++++");
 			System.out.print("Escolha uma opção: ");
 
-			 opcao = scan.nextInt();
+			opcao = scan.nextInt();
 			scan.nextLine();
 
 			switch (opcao) {
-			case 1:
-
-				poligonoMenu.menuPoligonos();
-
-				break;
-			case 0:
-				System.out.println(" ");
-				System.out.println("Finalizando a calculadora...\n");
-
-				break;
-			default:
-				System.out.println("Opção inválida. Escolha novamente.");
-			}
+				case 1:
+	
+					poligonoMenu.menuPoligonos();
+	
+					break;
+				case 0:
+					System.out.println(" ");
+					System.out.println("Finalizando a calculadora...\n");
+	
+					break;
+				default:
+					System.out.println("Opção inválida. Escolha novamente.");
+				}
 
 		} while (opcao != 0);
 
@@ -60,7 +58,7 @@ public class MenuPrincipal {
 				System.out.println("");
 			}
 
-			var resultadoFinalFormat = String.format("%.2f",poligonoMenu.resultadoFinal);
+			var resultadoFinalFormat = String.format("%.2f", poligonoMenu.getResultadoFinal());
 
 			var Stringbuilder = new StringBuilder();
 
