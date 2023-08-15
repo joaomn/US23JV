@@ -25,4 +25,9 @@ public class QuadradoImpl implements IPoligonosService {
 
 	}
 
+	@Override
+	public double getLado() {
+		return this.lado;
+	}
+
 }

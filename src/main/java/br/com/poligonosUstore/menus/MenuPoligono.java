@@ -11,28 +11,24 @@ import br.com.poligonosUstore.enums.LadosEnum;
 import br.com.poligonosUstore.exceptions.EntradaInvalidaException;
 import br.com.poligonosUstore.exceptions.FraseNaoFoiSalvaException;
 import br.com.poligonosUstore.exceptions.ValorNegativoNaoSuportadoException;
+import br.com.poligonosUstore.services.IPoligonosService;
 import br.com.poligonosUstore.services.QuadradoImpl;
-import br.com.poligonosUstore.services.ResultadoListaImpl;
+
 import br.com.poligonosUstore.services.TrianguloImpl;
 
 public class MenuPoligono {
 
-	private Scanner scan ;
+	private Scanner scan;
 
 	private double resultadoFinal = 0.0;
 
-	private List<String> listaResultados;
+	private List<IPoligonosService> poligono;
 
-	private ResultadoListaImpl lista;
-	
-	
 	public MenuPoligono() {
-		this.scan =  new Scanner(System.in);
-		this.listaResultados = new ArrayList<>();
-		this.lista = new ResultadoListaImpl();
+		this.scan = new Scanner(System.in);
+
+		this.poligono = new ArrayList<>();
 	}
-	
-	
 
 	public void menuPoligonos() {
 
@@ -43,80 +39,73 @@ public class MenuPoligono {
 		LadosEnum opcao;
 		try {
 			opcao = LadosEnum.getLadosEnum(Integer.valueOf(numLados));
-		} catch (EntradaInvalidaException e) {
-			System.out.println(e.getMessage());;
+		} catch (Exception e) {
+			
+			System.out.println(e.getMessage());
+			
 			return;
 		}
 
 		switch (opcao) {
 
-			case TRIANGULO:
-	
-				System.out.println("Digite o tamanho do lado (em cm): ");
-				var tamanhoLado = scan.nextDouble();
-	
-				try {
-					
-					var triangulo = new TrianguloImpl(tamanhoLado);
-					
-					var resultadoTriangulo = triangulo.getArea();
-	
-					resultadoFinal = resultadoFinal + resultadoTriangulo;
-	
-					var fraseResultado = lista.fraseResultado(tamanhoLado, resultadoTriangulo, "Triangulo");
-	
-					listaResultados.add(fraseResultado);
-	
-	//			
-	
-				} catch (ValorNegativoNaoSuportadoException e) {
-	
-					System.out.println(e.getMessage());
-				}
-	
-				break;
-	
-			case QUADRADO:
-	
-				System.out.println("Digite o tamanho do lado (em cm): ");
-				tamanhoLado = scan.nextDouble();
-				scan.nextLine();
-	
-				try {
-					
-					var quadrado = new QuadradoImpl(tamanhoLado);
-					
-					var resultadoQuadrado = quadrado.getArea();
-	
-					resultadoFinal = resultadoFinal + resultadoQuadrado;
-	
-					var fraseResultado = lista.fraseResultado(tamanhoLado, resultadoQuadrado, "Quadrado");
-	
-					listaResultados.add(fraseResultado);
-	
-				} catch (ValorNegativoNaoSuportadoException e) {
-	
-					System.out.println(e.getMessage());
-				}
-	
-				break;
-			default:
-	
-				System.out.println(
-						"Palavra não reconhecida. Voce deve digitar: tres ou quatro para informar o " + "numero de lados");
-				break;
+		case TRIANGULO:
+
+			System.out.println("Digite o tamanho do lado (em cm): ");
+			var tamanhoLado = scan.nextDouble();
+
+			try {
+
+				var triangulo = new TrianguloImpl(tamanhoLado);
+
+				poligono.add(triangulo);
+				
+				var resultadoQuadrado = triangulo.getArea();
+
+				resultadoFinal = resultadoFinal + resultadoQuadrado;
+
+			} catch (ValorNegativoNaoSuportadoException e) {
+
+				System.out.println(e.getMessage());
+			}
+
+			break;
+
+		case QUADRADO:
+
+			System.out.println("Digite o tamanho do lado (em cm): ");
+			tamanhoLado = scan.nextDouble();
+			scan.nextLine();
+
+			try {
+
+				var quadrado = new QuadradoImpl(tamanhoLado);
+				poligono.add(quadrado);
+
+				var resultadoQuadrado = quadrado.getArea();
+
+				resultadoFinal = resultadoFinal + resultadoQuadrado;
+
+			} catch (ValorNegativoNaoSuportadoException e) {
+
+				System.out.println(e.getMessage());
+			}
+
+			break;
+		default:
+
+			System.out.println(
+					"Palavra não reconhecida. Voce deve digitar: tres ou quatro para informar o " + "numero de lados");
+			break;
 
 		}
 
 	}
 
-	public List<String> getListaResultados() {
-		return listaResultados;
+	public List<IPoligonosService> getPoligono() {
+		return poligono;
 	}
 
-	public void setListaResultados(List<String> listaResultados) {
-		this.listaResultados = listaResultados;
-	}
+
 
 	public double getResultadoFinal() {
 		return resultadoFinal;

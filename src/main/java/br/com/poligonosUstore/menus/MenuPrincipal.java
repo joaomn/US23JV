@@ -6,14 +6,16 @@ import java.util.List;
 import java.util.Scanner;
 
 import br.com.poligonosUstore.exceptions.FraseNaoFoiSalvaException;
-import br.com.poligonosUstore.services.ResultadoListaImpl;
+import br.com.poligonosUstore.services.IPoligonosService;
+
+import br.com.poligonosUstore.services.TrianguloImpl;
 
 public class MenuPrincipal {
 	Scanner scan = new Scanner(System.in);
 
 	private MenuPoligono poligonoMenu = new MenuPoligono();
 
-	private ResultadoListaImpl lista = new ResultadoListaImpl();
+	
 
 	public void menuInicial() {
 
@@ -49,15 +51,22 @@ public class MenuPrincipal {
 				}
 
 		} while (opcao != 0);
+		
+		
+		var listaResultados = poligonoMenu.getPoligono();
+		
+		for(IPoligonosService poligono : listaResultados) {
+			var areaFormatada = String.format("%.2f", poligono.getArea());
+			if(poligono instanceof TrianguloImpl) {
+				System.out.println("Triangulo de lado " + poligono.getLado() + " cm e àrea " + areaFormatada + " cm2");
+			}else {
+				System.out.println("Quadrado de lado " + poligono.getLado() + " cm e àrea " + areaFormatada + " cm2");
+				
+			}
+		}
 
 		try {
-			var listaResultados = lista.getListaResultados(poligonoMenu.getListaResultados());
-
-			for (String frase : listaResultados) {
-				System.out.println(frase);
-				System.out.println("");
-			}
-
+			
 			var resultadoFinalFormat = String.format("%.2f", poligonoMenu.getResultadoFinal());
 
 			var Stringbuilder = new StringBuilder();

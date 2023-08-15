@@ -5,10 +5,10 @@ import br.com.poligonosUstore.exceptions.EntradaInvalidaException;
 public enum LadosEnum {
 
 	TRIANGULO(1), QUADRADO(2);
-	
+
 	private int identificador;
-	
-	LadosEnum(int valor){
+
+	LadosEnum(int valor) {
 		this.identificador = valor;
 	}
 
@@ -16,21 +16,17 @@ public enum LadosEnum {
 		return identificador;
 	}
 
-
 	public static LadosEnum getLadosEnum(int identificador) {
 		var enums = LadosEnum.values();
-		
+
 		for (int i = 0; i < enums.length; i++) {
 			var lado = enums[i];
-			
-			if(lado.getIdentificador() == identificador) {
+
+			if (lado.getIdentificador() == identificador) {
 				return lado;
-			}else {
-				throw new EntradaInvalidaException();
-				
 			}
-			
+
 		}
-		return null;
+		throw new EntradaInvalidaException();
 	}
 }
